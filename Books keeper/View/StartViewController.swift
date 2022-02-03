@@ -30,12 +30,17 @@ class StartViewController: UIViewController {
         super.viewDidAppear(animated)
         rotate(spinnerView)
     }
+    
+ 
     @IBAction func startButtonPressed() {
         isFirstOpen = false
         UserDefaults.standard.set(isFirstOpen, forKey: "isFirstOpen")
         performSegue(withIdentifier: SegueIdentifier.bookList.rawValue, sender: self)
     }
 }
+
+
+// MARK: - Extensions
 
 extension StartViewController: CAAnimationDelegate {
     
@@ -71,7 +76,7 @@ extension StartViewController: CAAnimationDelegate {
         
         reversOpacity.fromValue = 1
         reversOpacity.toValue = 0
-        reversOpacity.duration = 1
+        reversOpacity.duration = 0.3
         reversOpacity.fillMode = .both
         reversOpacity.isRemovedOnCompletion = false
         

@@ -11,16 +11,8 @@ import RealmSwift
 class BooksListViewViewModel: BooksListViewModelType {
 
     var books: Results<Book>!
-    
-    var actualBooks: Results<Book>! {
-        return books.filter("returnDate > Date()")
-    }
-    
-    var overdueBooks: Results<Book>! {
-        return books.filter("returnDate < Date()")
-    }
-    
-    var numberOfRowsInSection: Int {
+        
+    var numberOfRows: Int {
         return books.count
     }
     
@@ -54,14 +46,4 @@ class BooksListViewViewModel: BooksListViewModelType {
         books = books.sorted(byKeyPath: "returnDate")
     }
     
-    func numbeOfRowIn(Section section: Int) -> Int {
-        switch section {
-        case 0:
-            return actualBooks.count
-        case 1:
-            return overdueBooks.count
-        default:
-            return 0
-        }
-    }
 }

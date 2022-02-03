@@ -20,9 +20,7 @@ class BuildBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createButton()
-        
-        buttonCoordinate = buildButton.frame.origin.y
+        createButton(with: view.frame.size)
         updateUI()
         buildTF.delegate = self
         
@@ -35,6 +33,11 @@ class BuildBookViewController: UIViewController {
                                                selector: #selector(keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        createButton(with: size)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,10 +70,10 @@ class BuildBookViewController: UIViewController {
 
 extension BuildBookViewController {
     
-    func createButton() {
+    func createButton(with viewSize: CGSize) {
         
-        let viewHeight = view.frame.height
-        let viewWidth = view.frame.width
+        let viewHeight = viewSize.height
+        let viewWidth = viewSize.width
         
         let leftConstraint = CGFloat(36)
         let rightConstraint = viewWidth - 36
@@ -93,6 +96,9 @@ extension BuildBookViewController {
         
         buildButton.addTarget(self, action: #selector(buildButtonPressed), for: .touchUpInside)
         self.view.addSubview(buildButton)
+        
+        buttonCoordinate = buildButton.frame.origin.y
+        
     }
     
     func updateUI() {
@@ -126,10 +132,13 @@ extension BuildBookViewController {
             
             buildButton.isEnabled = false
         } else {
+            
             buildButton.isEnabled = true
         }
         
         buildButton.backgroundColor = buildButton.isEnabled ? enabledColor : unenabledColor
+        
+        
         
     }
 }
@@ -144,6 +153,8 @@ extension BuildBookViewController {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         if self.buildButton.frame.origin.y == buttonCoordinate {
             self.buildButton.frame.origin.y = buttonCoordinate - keyboardSize.height + 34
+        } else if self.buildButton.frame.origin.y == buttonCoordinate - keyboardSize.height  + 34 { self.buildButton.frame.origin.y = buttonCoordinate - keyboardSize.height  + 34
+            
         }
     }
     
@@ -163,8 +174,32 @@ extension BuildBookViewController: UITextFieldDelegate {
         return true
     }
     
-    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         updateButton()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+    }
+    
+    func transitionUpdate() {
+        
+        let viewHeight = view.frame.height
+        let viewWidth = view.frame.width
+        
+        let leftConstraint = CGFloat(36)
+        let rightConstraint = viewWidth - 36
+        
+        let width = rightConstraint - leftConstraint
+        let height = CGFloat(50)
+        
+        let topConstraint = viewHeight - height - 59
+        
+        buildButton.frame = CGRect(x: leftConstraint,
+                                   y: topConstraint ,
+                                   width: width,
+                                   height: height)
+        
+
     }
 }
