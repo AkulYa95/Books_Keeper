@@ -9,7 +9,7 @@ import Foundation
 
 protocol BooksListViewModelType {
     
-    var numberOfRows: Int {get}
+    var numberOfRowsInSection: Int {get}
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelType?
     

@@ -16,7 +16,7 @@ class BuildBookViewController: UIViewController {
     private var buttonCoordinate: CGFloat!
     
     var viewModel: BuildBookViewModelType?
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,28 +112,26 @@ extension BuildBookViewController {
     
     func updateButton() {
         
-        switch buildTF.text?.isEmpty {
-        case true:
+        let unenabledColor = UIColor(red: 201/255,
+                                     green: 201/255,
+                                     blue: 204/255,
+                                     alpha: 1)
+        
+        let enabledColor = UIColor(red: 7/255,
+                                   green: 123/255,
+                                   blue: 249/255,
+                                   alpha: 1)
+        
+        if buildTF.text?.isEmpty == true {
+            
             buildButton.isEnabled = false
-        case false:
+        } else {
             buildButton.isEnabled = true
-        default: break
         }
         
-        switch buildButton.isEnabled {
-        case true:
-            buildButton.backgroundColor = UIColor(red: 7/255,
-                                                  green: 123/255,
-                                                  blue: 249/255,
-                                                  alpha: 1)
-        case false:
-            buildButton.backgroundColor = UIColor(red: 201/255,
-                                                  green: 201/255,
-                                                  blue: 204/255,
-                                                  alpha: 1)
-        }
+        buildButton.backgroundColor = buildButton.isEnabled ? enabledColor : unenabledColor
+        
     }
-    
 }
 
 extension BuildBookViewController {

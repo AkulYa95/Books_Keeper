@@ -8,7 +8,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-
+    
     @IBOutlet var bookKepperView: UIImageView!
     @IBOutlet var bookView: UIImageView!
     @IBOutlet var spinnerView: UIImageView!
@@ -25,7 +25,7 @@ class StartViewController: UIViewController {
             self.isFirstOpen = isFirstOpen as? Bool
         }
     }
-        
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         rotate(spinnerView)
@@ -57,15 +57,11 @@ extension StartViewController: CAAnimationDelegate {
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         reversOpacity(spinnerView)
-        switch isFirstOpen {
-            
-        case true:
+        
+        if isFirstOpen == true {
             appearUI()
-            
-        case false:
+        } else {
             performSegue(withIdentifier: SegueIdentifier.bookList.rawValue, sender: nil)
-            
-        default: break
         }
     }
     
@@ -78,9 +74,9 @@ extension StartViewController: CAAnimationDelegate {
         reversOpacity.duration = 1
         reversOpacity.fillMode = .both
         reversOpacity.isRemovedOnCompletion = false
-    
+        
         view.layer.add(reversOpacity, forKey: "reversOpacity")
-           
+        
     }
     
     func startConfigureUI() {
