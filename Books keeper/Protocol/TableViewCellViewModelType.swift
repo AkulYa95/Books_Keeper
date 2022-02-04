@@ -9,5 +9,6 @@ import Foundation
 
 protocol TableViewCellViewModelType {
     var bookName: String {get}
-    var returnDate: String {get}
+    var date: String {get}
+    var indexPath: IndexPath {get}
 }

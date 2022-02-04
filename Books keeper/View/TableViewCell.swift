@@ -16,7 +16,12 @@ class TableViewCell: UITableViewCell {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
             bookNameLabel.text = viewModel.bookName
-            returnDateLabel.text = viewModel.returnDate
+            returnDateLabel.text = viewModel.date
+            if viewModel.indexPath.section == 1 {
+                returnDateLabel.textColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+            } else {
+                returnDateLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
+            }
             
         }
     }

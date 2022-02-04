@@ -15,6 +15,7 @@ class EditBookViewModel: BuildBookViewModelType {
     private var indexPath: IndexPath
     
     var book: Book {
+        
         return books[indexPath.row]
     }
     
@@ -23,6 +24,8 @@ class EditBookViewModel: BuildBookViewModelType {
     }
     
     var date: Date {
+        
+        
         book.returnDate
     }
     

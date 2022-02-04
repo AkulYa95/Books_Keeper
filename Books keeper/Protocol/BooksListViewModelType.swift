@@ -9,8 +9,8 @@ import Foundation
 
 protocol BooksListViewModelType {
     
-    var numberOfRows: Int {get}
-    
+    func numberOfRowsIn(Section section: Int) -> Int
+        
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellViewModelType?
     
     func selectRow(atIndexPath indexPath: IndexPath)
@@ -22,5 +22,11 @@ protocol BooksListViewModelType {
     func sortBooksByName()
     
     func sortBooksByDate()
+    
+    func filteringBooks()
+    
+    func headerFor(Section section: Int) -> String
+    
+    func deleteBook(at indexPath: IndexPath)
     
 }

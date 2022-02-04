@@ -9,19 +9,25 @@ import Foundation
 
 class TableViewCellViewModel: TableViewCellViewModelType {
     
+    private var book: Book
+    
+    var indexPath: IndexPath
+        
     var bookName: String {
         return book.name
     }
     
-    var returnDate: String {
+    var date: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yy"
+                
         return dateFormatter.string(from: book.returnDate)
     }
+
+
     
-    private var book: Book
-    
-    init(book: Book) {
+    init(book: Book, indexPath: IndexPath) {
         self.book = book
+        self.indexPath = indexPath
     }
 }

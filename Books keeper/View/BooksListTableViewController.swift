@@ -20,6 +20,7 @@ class BooksListTableViewController: UITableViewController {
         viewModel = BooksListViewViewModel()
         guard let viewModel = viewModel else { return }
         viewModel.books = StorageManager.realm.objects(Book.self)
+        viewModel.filteringBooks()
         
     }
     
@@ -38,19 +39,32 @@ class BooksListTableViewController: UITableViewController {
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
+        tableView.reloadData()
     }
     
     
     // MARK: - Table view data source
     
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel?.headerFor(Section: section)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfRows ?? 0
+        guard let viewModel = viewModel else { return 0 }
+        return viewModel.numberOfRowsIn(Section: section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell
         guard let tableViewCell = cell,
               let viewModel = viewModel else { return UITableViewCell() }
+        
         let cellViewModel = viewModel.cellViewModel(forIndexPath: indexPath)
         tableViewCell.viewModel = cellViewModel
 
@@ -64,19 +78,10 @@ class BooksListTableViewController: UITableViewController {
         
     }
     
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else { return }
         if editingStyle == .delete {
-            let book = viewModel.books[indexPath.row]
-            StorageManager.deleteBook(book)
+            viewModel.deleteBook(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             updateUI()
         }
@@ -136,9 +141,4 @@ extension BooksListTableViewController {
         
         self.present(alert, animated: true)
     }
-}
-
-extension BooksListTableViewController {
-    
-   
 }

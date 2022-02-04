@@ -51,7 +51,23 @@ class BuildBookViewController: UIViewController {
         
         guard let viewModel = viewModel else { return }
         guard let bookName = buildTF.text, !bookName.isEmpty else {return}
-        let date = datePicker.date
+                
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        dateFormatter.timeZone = .current
+        
+        let datePickerDate = datePicker.date
+        
+        let string = dateFormatter.string(from: datePickerDate)
+        let testDate = dateFormatter.date(from: string)
+        
+        print(string)
+
+        let date = testDate
+        guard let date = date else { return }
+        
+        print(date)
         let book = Book()
         book.name = bookName
         book.returnDate = date
@@ -61,8 +77,8 @@ class BuildBookViewController: UIViewController {
             } else if let viewModel = viewModel as? EditBookViewModel {
                 StorageManager.editList(viewModel.book, book)
             }
-            self.performSegue(withIdentifier: SegueIdentifier.unwindSegueToBooksList.rawValue, sender: nil)
         }
+        self.performSegue(withIdentifier: SegueIdentifier.unwindSegueToBooksList.rawValue, sender: nil)
     }
 }
 
@@ -98,7 +114,6 @@ extension BuildBookViewController {
         self.view.addSubview(buildButton)
         
         buttonCoordinate = buildButton.frame.origin.y
-        
     }
     
     func updateUI() {
@@ -109,9 +124,10 @@ extension BuildBookViewController {
         buildTF.placeholder = "Book name"
         buildTF.text = viewModel.bookName
         buildButton.setTitle(viewModel.buttonTitle, for: .normal)
+        
         datePicker.minimumDate = Date()
-        datePicker.date = viewModel.date
         datePicker.maximumDate = viewModel.maxDate
+        datePicker.date = viewModel.date
         
         updateButton()
     }
