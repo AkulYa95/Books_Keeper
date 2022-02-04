@@ -43,7 +43,6 @@ class BuildBookViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
@@ -60,14 +59,10 @@ class BuildBookViewController: UIViewController {
         let datePickerDate = datePicker.date
         
         let string = dateFormatter.string(from: datePickerDate)
-        let testDate = dateFormatter.date(from: string)
-        
-        print(string)
-
-        let date = testDate
+        let date = dateFormatter.date(from: string)
+    
         guard let date = date else { return }
         
-        print(date)
         let book = Book()
         book.name = bookName
         book.returnDate = date
@@ -77,8 +72,8 @@ class BuildBookViewController: UIViewController {
             } else if let viewModel = viewModel as? EditBookViewModel {
                 StorageManager.editList(viewModel.book, book)
             }
-        }
         self.performSegue(withIdentifier: SegueIdentifier.unwindSegueToBooksList.rawValue, sender: nil)
+        }
     }
 }
 
@@ -169,8 +164,6 @@ extension BuildBookViewController {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         if self.buildButton.frame.origin.y == buttonCoordinate {
             self.buildButton.frame.origin.y = buttonCoordinate - keyboardSize.height + 34
-        } else if self.buildButton.frame.origin.y == buttonCoordinate - keyboardSize.height  + 34 { self.buildButton.frame.origin.y = buttonCoordinate - keyboardSize.height  + 34
-            
         }
     }
     
@@ -195,7 +188,8 @@ extension BuildBookViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        buildButtonPressed()
+        return true
     }
     
     func transitionUpdate() {

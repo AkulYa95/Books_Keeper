@@ -22,6 +22,7 @@ class BooksListTableViewController: UITableViewController {
         viewModel.books = StorageManager.realm.objects(Book.self)
         viewModel.filteringBooks()
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +40,6 @@ class BooksListTableViewController: UITableViewController {
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
-        tableView.reloadData()
     }
     
     
@@ -131,7 +131,6 @@ extension BooksListTableViewController {
         let sortByDateAction = UIAlertAction(title: "Sort by date", style: .default) { _ in
             self.viewModel?.sortBooksByDate()
             self.tableView.reloadData()
-            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         

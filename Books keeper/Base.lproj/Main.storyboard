@@ -90,31 +90,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="qC5-b9-fW9" customClass="TableViewCell" customModule="Books_keeper" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="qC5-b9-fW9" customClass="TableViewCell" customModule="Books_keeper" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qC5-b9-fW9" id="Ci3-iJ-cyJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="385.5" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Arrow" translatesAutoresizingMaskIntoConstraints="NO" id="HRN-Ng-CvJ">
-                                            <rect key="frame" x="392" y="19" width="6" height="12"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="12" id="poc-c6-Bls"/>
-                                                <constraint firstAttribute="width" constant="6" id="tNX-c6-nXb"/>
-                                            </constraints>
-                                        </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="6h7-KY-kIc">
-                                            <rect key="frame" x="17" y="6" width="275" height="38.5"/>
+                                            <rect key="frame" x="17" y="6" width="347" height="38.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="iLW-v2-4Yg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="275" height="19.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="347" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exA-3U-X8B">
-                                                    <rect key="frame" x="0.0" y="21.5" width="275" height="17"/>
+                                                    <rect key="frame" x="0.0" y="21.5" width="347" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="GHf-Di-PN2"/>
                                                     </constraints>
@@ -126,16 +119,12 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="HRN-Ng-CvJ" firstAttribute="width" secondItem="Ci3-iJ-cyJ" secondAttribute="height" multiplier="3:25" id="D3J-Sa-NbT"/>
                                         <constraint firstItem="6h7-KY-kIc" firstAttribute="leading" secondItem="Ci3-iJ-cyJ" secondAttribute="leading" constant="17" id="Szv-HQ-2FL"/>
                                         <constraint firstItem="6h7-KY-kIc" firstAttribute="centerY" secondItem="Ci3-iJ-cyJ" secondAttribute="centerY" id="bN7-Qo-j2S"/>
-                                        <constraint firstItem="HRN-Ng-CvJ" firstAttribute="leading" secondItem="iLW-v2-4Yg" secondAttribute="trailing" constant="100" id="rmb-EO-JGz"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="HRN-Ng-CvJ" secondAttribute="trailing" constant="16" id="CqB-Cu-tx0"/>
-                                    <constraint firstAttribute="bottom" secondItem="HRN-Ng-CvJ" secondAttribute="bottom" constant="19" id="s7a-EM-MgB"/>
-                                    <constraint firstItem="HRN-Ng-CvJ" firstAttribute="top" secondItem="qC5-b9-fW9" secondAttribute="top" constant="19" id="ykz-2d-khM"/>
+                                    <constraint firstAttribute="trailing" secondItem="6h7-KY-kIc" secondAttribute="trailing" constant="50" id="XGt-vC-mjt"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="bookNameLabel" destination="iLW-v2-4Yg" id="fcI-EZ-e5d"/>
@@ -212,7 +201,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="0yo-H5-qOb">
-                                <rect key="frame" x="20" y="234" width="374" height="215"/>
+                                <rect key="frame" x="19" y="234" width="376" height="216"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0yo-H5-qOb" secondAttribute="height" multiplier="374:215" id="Nx2-bE-ssf"/>
                                 </constraints>
@@ -224,11 +213,9 @@
                         <constraints>
                             <constraint firstItem="0yo-H5-qOb" firstAttribute="top" secondItem="BWe-iy-C0h" secondAttribute="bottom" constant="25" id="EWd-QA-Euh"/>
                             <constraint firstItem="BWe-iy-C0h" firstAttribute="top" secondItem="D7b-2Y-4Qp" secondAttribute="top" constant="25" id="Pwr-NI-P0q"/>
-                            <constraint firstItem="0yo-H5-qOb" firstAttribute="leading" secondItem="D7b-2Y-4Qp" secondAttribute="leading" constant="20" id="T1u-zE-ox9"/>
                             <constraint firstItem="0yo-H5-qOb" firstAttribute="centerX" secondItem="D7b-2Y-4Qp" secondAttribute="centerX" id="jqx-pA-hSL"/>
                             <constraint firstItem="BWe-iy-C0h" firstAttribute="leading" secondItem="D7b-2Y-4Qp" secondAttribute="leading" constant="20" id="kjM-Ek-2zB"/>
                             <constraint firstItem="D7b-2Y-4Qp" firstAttribute="trailing" secondItem="BWe-iy-C0h" secondAttribute="trailing" constant="20" id="nNQ-fo-bNt"/>
-                            <constraint firstItem="D7b-2Y-4Qp" firstAttribute="trailing" secondItem="0yo-H5-qOb" secondAttribute="trailing" constant="20" id="uVx-nZ-Bdv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="AtM-In-R2d"/>
@@ -269,7 +256,6 @@
         <segue reference="lVs-1Z-M5J"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Arrow" width="33" height="56"/>
         <image name="Book" width="1088" height="900"/>
         <image name="Spinner" width="404" height="404"/>
         <image name="sort" width="26.666666030883789" height="26.666666030883789"/>
